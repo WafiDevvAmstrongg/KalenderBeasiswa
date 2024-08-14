@@ -59,18 +59,28 @@
                             <a class="nav-link" href="{{ route('kalender') }}#KalenderBeasiswa">Kalender
                                 Beasiswa</a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('proposal.store') }}">Artikel</a>
-                        </li>
+                        @if (auth()->user()->can('artikel-permission'))
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('proposal.store') }}">Artikel</a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('wishlist') }}">Wishlist</a>
                         </li>
+                        @if (!auth())
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('subscriber_login') }}">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('kalender_beasiswa.index') }}">Dashboard</a>
-                        </li>
+                        @endif
+                        @if (auth()->user()->can('artikel-permission'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('kalender_beasiswa.index') }}">Dashboard</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('kalender_beasiswa.index') }}">Profile</a>
+                            </li>
+                        @endif
                     @else
                         <li class="nav-item">
                             <a class="nav-link text-black" href="{{ route('home') }}">Home</a>

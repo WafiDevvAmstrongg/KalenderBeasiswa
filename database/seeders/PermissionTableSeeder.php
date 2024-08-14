@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 
 class PermissionTableSeeder extends Seeder
 {
@@ -12,15 +12,17 @@ class PermissionTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $permissions =[
-            'kalender-list',
-            'kalender-create',
-            'kalender-edit',
-            'kalender-delete',
-            'artikel-list',
-            'artikel-create',
-            'artikel-edit',
-            'artikel-delete',
+        $permissions = [
+            'kalender-permission',
+            'artikel-permission',
+            'wishlist-list',
+            'wishlist-tambah',
+            'wishlist-delete',
+            'dashboard-permission'
         ];
+
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
     }
 }

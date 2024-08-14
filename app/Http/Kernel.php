@@ -73,6 +73,7 @@ class Kernel extends HttpKernel
             'role' => RoleMiddleware::class,
             'permission' => PermissionMiddleware::class,
             'role_or_permission' => RoleOrPermissionMiddleware::class,
+            'check.user.permission' => \App\Http\Middleware\CheckUserPermission::class,
     ];
 
 }
